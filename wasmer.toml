@@ -1,0 +1,15 @@
+[dependencies]
+"wasmer/python" = "~3.12.6"
+
+[fs]
+"/src" = "./src"
+"/cpython/lib/python3.12" = "./.env/lib/python3.11"
+
+[[command]]
+name = "script"
+module = "wasmer/python:python"
+runner = "wasi"
+
+[command.annotations.wasi]
+env = ["PYTHONEXECUTABLE=/bin/python", "bot_id=abc123"]
+main-args = ["-m", "flask", "--app", "/src/main.py", "run"]
