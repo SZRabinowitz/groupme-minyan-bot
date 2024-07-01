@@ -1,52 +1,22 @@
-This is a simple [Flask](https://flask.palletsprojects.com/en/3.0.x/) Web Server template
+# Python GroupMe Minyanim Bot
+- real minyan data not implemented yet - Coming later
 
-
-## Usage
-
-First, create a local virtual environment:
-
-```bash
-python3 -m venv .env
+## To start:  
+- Clone this repo: ```git clone https://github.com/SZRabinowitz/groupme-minyan-bot```
+- cd to the bot dir `cd groupme-minyan-bot`
+- [Make a groupme bot](https://dev.groupme.com/bots). For now, leave the callback url empty.
+- Install wasmer: 
+```curl https://get.wasmer.io -sSfL | sh```
+- Install uv ```curl -LsSf https://astral.sh/uv/install.sh | sh```
+- login using `wasmer login`
+- open wasmer.toml and replace `abc123` with the actual groupme bot id. 
+ ```
+ uv venv .env
 source .env/bin/activate
-```
-
-Install the dependencies with:
-
-```bash
-pip install Flask
-```
-
-Then, you can run the Flask app (`src/main.py`) with Python:
-
-```bash
-$ python src/main.py
- * Serving Flask app '/src/main'
- * Debug mode: on
-WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
- * Running on http://127.0.0.1:5000
-Press CTRL+C to quit
-```
-
-
-You can run the Flask example using Wasmer (check out the [install guide](https://docs.wasmer.io/install)):
-
-```bash
-wasmer run . --net
-```
-
-**Note: you may need to update `wasmer.toml` filesystem, to point ot the right path for the environment depending on your Python version (currently using `./.env/lib/python3.9`)**.
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the Flask application.
-
-
-## Deploy on Wasmer Edge
-
-The easiest way to deploy your Flask app is to use the [Wasmer Edge](https://wasmer.io/products/edge).
-
-Live example: https://wasmer-python-flask-server-worker.wasmer.app
-
-Run this commmand to deploy to Wasmer Edge:
-
-```bash
+uv pip install -r requirements.txt
 wasmer deploy
 ```
+
+Wasmer deploy will give you a deployement URL, use it for groupme bot callback url, with /minyanim at the end. 
+
+Now, send /minyan in your group to get the minyan list. 
